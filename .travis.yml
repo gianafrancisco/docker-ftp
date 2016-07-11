@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+install:
+  - docker build -t fgiana/vsftpd .
+
+script: true
+
+before_install:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+after_success:
+  - docker push fgiana/vsftp
